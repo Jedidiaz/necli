@@ -1,19 +1,21 @@
 import { Container, Slide, Snackbar, Stack, Typography } from "@mui/material";
-import StyledInput from "../../components/input";
-import { colors } from "../../utils/colors";
+import StyledInput from "../../../components/input";
+import { colors } from "../../../utils/colors";
 import { LoadingButton } from "@mui/lab";
 import { useState } from "react";
-import { bank } from "../../utils/instance";
+import { bank } from "../../../utils/instance";
 import { useNavigate } from "react-router-dom";
-import Layout from "../../components/layout";
+import Layout from "../../../components/layout";
+import useUser from "../../../hooks/useUser";
 
-const initValues = { account: "", password: "" };
+const initValues = { account_recive: "", amount: "" };
 
-const Login = () => {
+const Transferencia = () => {
   const [form, setForm] = useState(initValues);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { user, userUpdate } = useUser();
 
   //capture form
   const handleChange = ({ target }) => {
@@ -33,7 +35,6 @@ const Login = () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
       setLoading(false);
-      navigate("/home");
     } catch (error) {
       setLoading(false);
       setMessage(`⚠️ ${error.response.data.msg}`);
@@ -59,10 +60,10 @@ const Login = () => {
               {/* header */}
               <Stack textAlign="center" spacing={1}>
                 <Typography variant="h5" fontWeight={600}>
-                  Entra a tu Necli
+                  Transfiere con Necli
                 </Typography>
                 <Typography variant="subtitle2" fontWeight={500}>
-                  Entra con tu cuenta y contraseña indicada
+                  Transfiere facil y sencillo a tus amigos de necli
                 </Typography>
               </Stack>
               {/* Form */}
@@ -74,18 +75,18 @@ const Login = () => {
               >
                 <StyledInput
                   type="number"
-                  name="account"
+                  name="account_recive"
                   label="Account"
                   change={handleChange}
                 />
                 <StyledInput
-                  type="password"
-                  name="password"
-                  label="Password"
+                  type="number"
+                  name="amount"
+                  label="Monto"
                   change={handleChange}
                 />
                 <LoadingButton type="submit" loading={loading}>
-                  Entrar
+                  Enviar
                 </LoadingButton>
               </Stack>
             </Stack>
@@ -106,4 +107,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Transferencia;

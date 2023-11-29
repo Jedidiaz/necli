@@ -7,6 +7,9 @@ const theme = createTheme({
       main: colors.primary,
       contrastText: "#fff",
     },
+    secondary: {
+      main: colors.secondary,
+    },
   },
   typography: {
     fontFamily: "Manrope, Arial, Helvetica, sans-serif",
