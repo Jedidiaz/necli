@@ -6,6 +6,7 @@ import Home from "./views/dash/home";
 import theme from "./utils/theme";
 import Inicio from "./views";
 import Transferencia from "./views/dash/transferencia";
+import Movements from "./views/dash/movements";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" Component={Login} />
           <Route path="/home" Component={Home} />
           <Route path="/transferir" Component={Transferencia} />
+          <Route path="/movements" Component={Movements} />
         </Routes>
       </Router>
     </ThemeProvider>

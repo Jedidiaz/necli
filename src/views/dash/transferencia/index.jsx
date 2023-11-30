@@ -15,7 +15,7 @@ const Transferencia = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { user, userUpdate } = useUser();
+  const { user, updateUser } = useUser();
 
   //capture form
   const handleChange = ({ target }) => {
@@ -29,12 +29,19 @@ const Transferencia = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const body = {
+      ...form,
+      id: user?.id,
+      token: localStorage.getItem("token"),
+    };
     try {
-      const { data } = await bank.post("login", form);
-      setMessage(`✅ ${data.msg}`);
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      const { msg, new_money } = await bank
+        .post("movements", body)
+        .then((data) => data.data);
+      setMessage(`✅ ${msg}`);
+      updateUser("money", new_money);
       setLoading(false);
+      setForm(initValues);
     } catch (error) {
       setLoading(false);
       setMessage(`⚠️ ${error.response.data.msg}`);

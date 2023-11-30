@@ -6,6 +6,7 @@ const Inicio = () => {
 
   useEffect(() => {
     if (!localStorage.getItem("token")) navigate("/login");
+    else navigate("/home");
   }, []);
 
   return <></>;
