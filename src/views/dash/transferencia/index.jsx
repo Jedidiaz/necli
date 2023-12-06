@@ -22,7 +22,7 @@ const Transferencia = () => {
     const { value, name } = target;
     setForm((props) => ({
       ...props,
-      [name]: value,
+      [name]: name === "amount" ? Number(value) : value,
     }));
   };
   //submit api
@@ -85,12 +85,14 @@ const Transferencia = () => {
                   name="account_recive"
                   label="Account"
                   change={handleChange}
+                  value={form?.account_recive}
                 />
                 <StyledInput
                   type="number"
                   name="amount"
                   label="Monto"
                   change={handleChange}
+                  value={form?.amount}
                 />
                 <LoadingButton type="submit" loading={loading}>
                   Enviar

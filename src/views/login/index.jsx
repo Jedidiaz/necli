@@ -77,12 +77,14 @@ const Login = () => {
                   name="account"
                   label="Account"
                   change={handleChange}
+                  value={form?.account}
                 />
                 <StyledInput
                   type="password"
                   name="password"
                   label="Password"
                   change={handleChange}
+                  value={form?.password}
                 />
                 <LoadingButton type="submit" loading={loading}>
                   Entrar

@@ -7,6 +7,7 @@ const StyledInput = ({
   change = () => {},
   type = "text",
   label = "none",
+  value = "",
 }) => {
   return (
     <Stack>
@@ -21,6 +22,7 @@ const StyledInput = ({
             borderRadius: "5px",
           },
         }}
+        value={value}
         sx={{
           borderRadius: "5px",
           "input::-webkit-inner-spin-button": {
